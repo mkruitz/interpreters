@@ -10,6 +10,7 @@ namespace Interpeter
 
         private readonly CardiacMemoryCell[] memory;
         private int programCounter;
+        private int accumilator = 0;
 
         public Cardiac()
         {
@@ -39,8 +40,22 @@ namespace Interpeter
                     case CardiacOpcode.INP:
                         memory[cell.Address].Value = Input.Dequeue();
                         break;
+                    case CardiacOpcode.CLA:
+                        accumilator = memory[cell.Address].Value;
+                        break;
+                    case CardiacOpcode.ADD:
+                        accumilator += memory[cell.Address].Value;
+                        break;
+                    // TAC
+                    // SFT
                     case CardiacOpcode.OUT:
                         Output.Enqueue(memory[cell.Address].Value);
+                        break;
+                    case CardiacOpcode.STO:
+                        memory[cell.Address].Value = accumilator;
+                        break;
+                    case CardiacOpcode.SUB:
+                        accumilator -= memory[cell.Address].Value;
                         break;
                     case CardiacOpcode.JMP:
                         nextCounter = cell.Address;

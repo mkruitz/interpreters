@@ -115,34 +115,132 @@ namespace Tests
             Assert.AreEqual(900, computer.Output.Dequeue());
         }
 
-        // ProgramCounter starts at 03.
-        // Memory cell  Value
-        // -----------  -----
-        // 03           010
-        // 04           011
-        // 05           110
-        // 06           211
-        // 07           612
-        // 08           512
-        // 09           900
-        [Test, Ignore("")]
-        public void Program_AddTwoNumbers()
+        [Test]
+        public void CardiacAccumilator_StoreEmptyAccumilatorIntoCell_OutputAccumilatorContent()
         {
-            computer.Input.Enqueue(900);
+            EnqueueProgram(
+                603,
+                503,
+                900
+                );
+
             computer.Execute();
-            // {
-            //     "901", "308", "901", "309", "508", "209", "902", "000"
-            // });
-            // 
-            // lmc.Inbox.Enqueue(10);
-            // lmc.Inbox.Enqueue(1);
-            // 
-            // lmc.Execute();
-            // 
-            // var outbox = lmc.Outbox.Dequeue();
-            // Assert.AreEqual(9, outbox);
+
+            Assert.AreEqual(0, computer.Input.Count);
+            Assert.AreEqual(1, computer.Output.Count);
+            Assert.AreEqual(000, computer.Output.Dequeue());
         }
-        
+
+        [Test]
+        public void CardiacAccumilator_AddOne_OutputOne()
+        {
+            EnqueueProgram(
+                200,
+                603,
+                503,
+                900
+            );
+
+            computer.Execute();
+
+            Assert.AreEqual(0, computer.Input.Count);
+            Assert.AreEqual(1, computer.Output.Count);
+            Assert.AreEqual(01, computer.Output.Dequeue());
+        }
+
+        [Test]
+        public void CardiacAccumilator_AddOneTwice_OutputTwo()
+        {
+            EnqueueProgram(
+                200,
+                200,
+                610,
+                510,
+                900
+            );
+
+            computer.Execute();
+
+            Assert.AreEqual(0, computer.Input.Count);
+            Assert.AreEqual(1, computer.Output.Count);
+            Assert.AreEqual(02, computer.Output.Dequeue());
+        }
+
+        [Test]
+        public void CardiacAccumilator_AddTen_OutputTen()
+        {
+            EnqueueProgram(
+                010,
+                203,
+                610,
+                510,
+                904
+            );
+            computer.Input.Enqueue(000);
+
+            computer.Execute();
+
+            Assert.AreEqual(0, computer.Input.Count);
+            Assert.AreEqual(1, computer.Output.Count);
+            Assert.AreEqual(10, computer.Output.Dequeue());
+        }
+
+        [Test]
+        public void CardiacAccumilator_AddAndClearOneTwice_OutputOne()
+        {
+            EnqueueProgram(
+                100,
+                100,
+                610,
+                510,
+                900
+            );
+
+            computer.Execute();
+
+            Assert.AreEqual(0, computer.Input.Count);
+            Assert.AreEqual(1, computer.Output.Count);
+            Assert.AreEqual(01, computer.Output.Dequeue());
+        }
+
+        [Test]
+        public void CardiacAccumilator_AddOneAndRemoveOne_OutputZero()
+        {
+            EnqueueProgram(
+                200,
+                700,
+                610,
+                510,
+                900
+            );
+
+            computer.Execute();
+
+            Assert.AreEqual(0, computer.Input.Count);
+            Assert.AreEqual(1, computer.Output.Count);
+            Assert.AreEqual(00, computer.Output.Dequeue());
+        }
+
+        [Test]
+        public void CardiacAccumilator_AddTenAndRemoveOne_OutputZero()
+        {
+            EnqueueProgram(
+                010,
+                200,
+                703,
+                610,
+                510,
+                904
+            );
+            computer.Input.Enqueue(000);
+
+            computer.Execute();
+
+            Assert.AreEqual(0, computer.Input.Count);
+            Assert.AreEqual(1, computer.Output.Count);
+            Assert.AreEqual(09, computer.Output.Dequeue());
+        }
+
         private void EnqueueProgram(params int[] instructions)
         {
             EnqueueBootLoader();
