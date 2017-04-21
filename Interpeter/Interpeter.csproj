@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardiacLoader.cs" />
     <Compile Include="CardiacMemoryCell.cs" />
     <Compile Include="CardiacOpcode.cs" />
+    <Compile Include="IDeviceWithInput.cs" />
     <Compile Include="LittleMansComputer.cs" />
     <Compile Include="Cardiac.cs" />
     <Compile Include="Program.cs" />

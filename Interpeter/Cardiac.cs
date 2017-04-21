@@ -3,22 +3,17 @@ using System.Collections.Generic;
 
 namespace Interpeter
 {
-    public class Cardiac
+    public class Cardiac : IDeviceWithInput
     {
-        public Queue<int> Input { get; }
-        public Queue<int> Output { get; }
+        public Queue<int> Output { get; } = new Queue<int>();
 
+        private readonly Queue<int> input = new Queue<int>();
         private readonly CardiacMemoryCell[] memory;
-        private int programCounter;
+        private int programCounter = 0;
         private int accumilator = 0;
 
         public Cardiac()
         {
-            Input = new Queue<int>();
-            Output = new Queue<int>();
-
-            programCounter = 0;
-
             memory = new CardiacMemoryCell[100];
             memory[0] = new CardiacROMCell(001);
             memory[99] = new CardiacROMCell(900);
@@ -27,6 +22,11 @@ namespace Interpeter
             {
                 memory[i] = new CardiacRAMCell();
             }
+        }
+
+        public void Enqueue(int inputValue)
+        {
+            input.Enqueue(inputValue);
         }
 
         public void Execute()
@@ -38,7 +38,7 @@ namespace Interpeter
                 switch (cell.OpCode)
                 {
                     case CardiacOpcode.INP:
-                        memory[cell.Address].Value = Input.Dequeue();
+                        memory[cell.Address].Value = input.Dequeue();
                         break;
                     case CardiacOpcode.CLA:
                         accumilator = memory[cell.Address].Value;
