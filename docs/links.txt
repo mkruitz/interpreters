@@ -1,0 +1,6 @@
+https://en.wikipedia.org/wiki/CARDboard_Illustrative_Aid_to_Computation
+http://courses.cs.vt.edu/csonline/MachineArchitecture/Lessons/CPU/index.html
+http://courses.cs.vt.edu/csonline/MachineArchitecture/Lessons/CPU/Lesson.html
+http://www.historicsimulations.com/cardiac.html
+https://www.cs.drexel.edu/~bls96/museum/cardiac.html
+https://www.cs.drexel.edu/~bls96/museum/cardsim.html
