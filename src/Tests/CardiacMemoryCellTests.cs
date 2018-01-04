@@ -40,8 +40,8 @@ namespace Tests
     [TestCase(1000, 000)]
     [TestCase(-1000, 000)]
     [TestCase(1111, 111)]
-    [TestCase(-1111, 111)]
-    public void Cardiac_SetIncorrectValue_ValueIs3CharacterPositiveInt(int startValue, int expectedValue)
+    [TestCase(-1111, -111)]
+    public void Cardiac_SetIncorrectValue_ValueIs3CharacterInt(int startValue, int expectedValue)
     {
       var cell = new CardiacRAMCell { Value = startValue };
 
@@ -61,6 +61,7 @@ namespace Tests
     [TestCase(000, 00)]
     [TestCase(100, 00)]
     [TestCase(111, 11)]
+    [TestCase(-111, 11)]
     public void Cardiac_Value_Address(int startValue, int expectedAddress)
     {
       var cell = new CardiacRAMCell { Value = startValue };

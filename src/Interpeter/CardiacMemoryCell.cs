@@ -31,10 +31,10 @@ namespace Interpeter
     public virtual int Value
     {
       get { return value; }
-      set { this.value = Math.Abs(value % 1000); }
+      set { this.value = value % 1000; }
     }
 
-    public CardiacOpcode OpCode => (CardiacOpcode)(value / 100);
-    public int Address => value % 100;
+    public CardiacOpcode OpCode => (CardiacOpcode)Math.Abs(value / 100);
+    public int Address => Math.Abs(value % 100);
   }
 }

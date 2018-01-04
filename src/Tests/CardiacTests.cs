@@ -165,12 +165,12 @@ namespace Tests
     {
       loader.EnqueueProgram(
           010,
-          203,
+          210,
           610,
           510,
           904
       );
-      computer.Enqueue(000);
+      computer.Enqueue(010);
 
       computer.Execute();
 
@@ -213,22 +213,45 @@ namespace Tests
     }
 
     [Test]
-    public void CardiacAccumilator_AddTenAndRemoveOne_OutputZero()
+    public void CardiacAccumilator_AddTenAndRemoveOne_OutputNine()
     {
       loader.EnqueueProgram(
-          010,
-          200,
-          703,
-          610,
-          510,
+          020,
+          021,
+          220,
+          721,
+          630,
+          530,
           904
       );
-      computer.Enqueue(000);
+      computer.Enqueue(010);
+      computer.Enqueue(001);
 
       computer.Execute();
 
       Assert.AreEqual(1, computer.Output.Count);
-      Assert.AreEqual(09, computer.Output.Dequeue());
+      Assert.AreEqual(009, computer.Output.Dequeue());
+    }
+
+    [Test]
+    public void CardiacAccumilator_AddZeroAndRemoveOne_OutputMinusOne()
+    {
+      loader.EnqueueProgram(
+        020,
+        021,
+        220,
+        721,
+        630,
+        530,
+        904
+      );
+      computer.Enqueue(000);
+      computer.Enqueue(001);
+
+      computer.Execute();
+
+      Assert.AreEqual(1, computer.Output.Count);
+      Assert.AreEqual(-001, computer.Output.Dequeue());
     }
   }
 }

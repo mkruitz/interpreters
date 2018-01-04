@@ -82,7 +82,7 @@ namespace Tests
       //Results in infinite loop
     }
 
-    [Test, Ignore("Fails: - Wrong implementation, negative numbers? - Missing implementation of 3xx code (TAC)")]
+    [Test, Ignore("Fails: - Wrong implementation, negative numbers?")]
     public void ProgramNo4_RocketLaunchingCountdown()
     {
       loader.StartAt(19);

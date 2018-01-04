@@ -46,7 +46,12 @@ namespace Interpeter
           case CardiacOpcode.ADD:
             accumilator += memory[cell.Address].Value;
             break;
-          // TAC
+          case CardiacOpcode.TAC:
+            if (accumilator < 0)
+            {
+              nextCounter = cell.Address;
+            }
+            break;
           // SFT
           case CardiacOpcode.OUT:
             Output.Enqueue(memory[cell.Address].Value);
