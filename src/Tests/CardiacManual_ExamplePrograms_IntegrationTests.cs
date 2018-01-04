@@ -82,10 +82,14 @@ namespace Tests
       //Results in infinite loop
     }
 
-    [Test, Ignore("Fails: - Wrong implementation, negative numbers?")]
+    [Test]
     public void ProgramNo4_RocketLaunchingCountdown()
     {
       loader.StartAt(19);
+      loader.EnqueueSubRoutine(
+        -004
+      );
+      loader.StartAt(20);
       loader.EnqueueProgram(
         119,
         200,
@@ -95,11 +99,9 @@ namespace Tests
         900
       );
 
-      computer.Enqueue(-004);
-
       computer.Execute();
 
-      Assert.AreEqual(1, computer.Output.Count);
+      Assert.AreEqual(4, computer.Output.Count);
       Assert.AreEqual(-003, computer.Output.Dequeue());
       Assert.AreEqual(-002, computer.Output.Dequeue());
       Assert.AreEqual(-001, computer.Output.Dequeue());
