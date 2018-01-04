@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Interpeter
+﻿namespace Interpeter
 {
   public class CardiacLoader
   {
@@ -14,10 +12,7 @@ namespace Interpeter
     public void EnqueueProgram(params int[] instructions)
     {
       EnqueueBootLoader();
-      if (instructions.Any())
-      {
-        EnqueueProgramInstructions(instructions);
-      }
+      EnqueueProgramInstructions(instructions);
       EnqueueStartProgram();
     }
 
