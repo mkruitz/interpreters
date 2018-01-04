@@ -4,6 +4,7 @@
   {
     private readonly IDeviceWithInput inputDevice;
     private int startAddress = 003;
+    private bool isBootLoaderEnqueed;
 
     public CardiacLoader(IDeviceWithInput inputDevice)
     {
@@ -17,13 +18,13 @@
 
     public void EnqueueProgram(params int[] instructions)
     {
-      EnqueueBootLoader();
-      EnqueueProgramInstructions(instructions);
+      EnqueueSubRoutine(instructions);
       EnqueueStartProgram();
     }
 
-    private void EnqueueProgramInstructions(params int[] instructions)
+    public void EnqueueSubRoutine(params int[] instructions)
     {
+      EnqueueBootLoader();
       var addr = startAddress;
       foreach (var instruction in instructions)
       {
@@ -35,8 +36,15 @@
 
     private void EnqueueBootLoader()
     {
+      if (isBootLoaderEnqueed)
+      {
+        return;
+      }
+
       inputDevice.Enqueue(002);
       inputDevice.Enqueue(800);
+
+      isBootLoaderEnqueed = true;
     }
 
     private void EnqueueStartProgram()

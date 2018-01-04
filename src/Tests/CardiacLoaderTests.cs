@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Interpeter;
 using NUnit.Framework;
 
@@ -78,8 +79,43 @@ namespace Tests
       );
     }
 
+    [Test]
+    public void Loader_AddSubRoutine_StartsWithBootLoader()
+    {
+      loader.StartAt(050);
+      loader.EnqueueSubRoutine(
+        999
+      );
+
+      AssertAndDequeueProgram(stub.InputsQueued,
+        BootLoader,
+        new[] { 050, 999 }
+      );
+    }
+
+    [Test]
+    public void Loader_AddTwoSubRoutines_OnlyAddBootLoaderOnce()
+    {
+      loader.StartAt(050);
+      loader.EnqueueSubRoutine(
+        999
+      );
+      loader.StartAt(060);
+      loader.EnqueueSubRoutine(
+        999
+      );
+
+      AssertAndDequeueProgram(stub.InputsQueued,
+        BootLoader,
+        new[] { 050, 999 },
+        new[] { 060, 999 }
+      );
+    }
+
     private void AssertAndDequeueProgram(Queue<int> actualQueue, params int[][] expectedInstructionRanges)
     {
+      Assert.AreEqual(expectedInstructionRanges.Sum(range => range.Length), actualQueue.Count, "Number of instruction are not equal");
+
       foreach (var expectedInstructionRange in expectedInstructionRanges)
       {
         AssertAndDequeueInstructions(actualQueue, expectedInstructionRange);
