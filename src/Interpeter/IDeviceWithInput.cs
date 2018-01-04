@@ -1,7 +1,7 @@
 ﻿namespace Interpeter
 {
-    public interface IDeviceWithInput
-    {
-        void Enqueue(int input);
-    }
+  public interface IDeviceWithInput
+  {
+    void Enqueue(int input);
+  }
 }
