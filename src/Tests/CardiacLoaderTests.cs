@@ -61,6 +61,23 @@ namespace Tests
       );
     }
 
+    [Test]
+    public void Loader_SetStartPosition_TwoInstructions_ProgramStartsAtRequestedPosition()
+    {
+      loader.StartAt(050);
+      loader.EnqueueProgram(
+        000,
+        999
+      );
+
+      AssertAndDequeueProgram(stub.InputsQueued,
+        BootLoader,
+        new[] { 050, 000 },
+        new[] { 051, 999 },
+        new [] { 850 } // ProgramStart
+      );
+    }
+
     private void AssertAndDequeueProgram(Queue<int> actualQueue, params int[][] expectedInstructionRanges)
     {
       foreach (var expectedInstructionRange in expectedInstructionRanges)

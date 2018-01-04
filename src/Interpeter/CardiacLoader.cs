@@ -3,10 +3,16 @@
   public class CardiacLoader
   {
     private readonly IDeviceWithInput inputDevice;
+    private int startAddress = 003;
 
     public CardiacLoader(IDeviceWithInput inputDevice)
     {
       this.inputDevice = inputDevice;
+    }
+
+    public void StartAt(int address)
+    {
+      startAddress = address;
     }
 
     public void EnqueueProgram(params int[] instructions)
@@ -18,7 +24,7 @@
 
     private void EnqueueProgramInstructions(params int[] instructions)
     {
-      var addr = 003;
+      var addr = startAddress;
       foreach (var instruction in instructions)
       {
         inputDevice.Enqueue(addr);
@@ -35,7 +41,8 @@
 
     private void EnqueueStartProgram()
     {
-      inputDevice.Enqueue(803);
+      var startAdressJumpInstruction = 800 + startAddress;
+      inputDevice.Enqueue(startAdressJumpInstruction);
     }
   }
 }
