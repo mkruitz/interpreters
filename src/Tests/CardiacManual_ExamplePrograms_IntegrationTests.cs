@@ -85,11 +85,11 @@ namespace Tests
     [Test]
     public void ProgramNo4_RocketLaunchingCountdown()
     {
-      loader.StartAt(19);
+      loader.StartAt(019);
       loader.EnqueueSubRoutine(
         -004
       );
-      loader.StartAt(20);
+      loader.StartAt(020);
       loader.EnqueueProgram(
         119,
         200,
@@ -106,6 +106,65 @@ namespace Tests
       Assert.AreEqual(-002, computer.Output.Dequeue());
       Assert.AreEqual(-001, computer.Output.Dequeue());
       Assert.AreEqual(000, computer.Output.Dequeue());
+    }
+
+    [Test]
+    public void ProgramNo5_MultiplicationBySingleDigitMultiplier()
+    {
+      loader.StartAt(007);
+      loader.EnqueueProgram(
+        068,
+        404,
+        669,
+        070,
+        170,
+        700,
+        670,
+        319,
+        169,
+        268,
+        669,
+        811,
+        569,
+        900
+      );
+      computer.Enqueue(12);
+      computer.Enqueue(3);
+
+      computer.Execute();
+
+      Assert.AreEqual(1, computer.Output.Count);
+      Assert.AreEqual(12 * 3, computer.Output.Dequeue());
+    }
+
+    [Test, Ignore("SFT operation not yet implemented")]
+    public void ProgramNo6_ReversingTheOrderOfANumber()
+    {
+      loader.StartAt(015);
+      loader.EnqueueProgram(
+        039,
+        139,
+        431,
+        240,
+        640,
+        139,
+        413,
+        240,
+        640,
+        139,
+        423,
+        410,
+        240,
+        640,
+        540,
+        900
+      );
+      computer.Enqueue(123);
+
+      computer.Execute();
+
+      Assert.AreEqual(1, computer.Output.Count);
+      Assert.AreEqual(321, computer.Output.Dequeue());
     }
   }
 }
