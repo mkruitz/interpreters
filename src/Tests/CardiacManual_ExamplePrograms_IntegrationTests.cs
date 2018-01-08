@@ -137,7 +137,7 @@ namespace Tests
       Assert.AreEqual(12 * 3, computer.Output.Dequeue());
     }
 
-    [Test, Ignore("SFT operation not yet implemented")]
+    [Test]
     public void ProgramNo6_ReversingTheOrderOfANumber()
     {
       loader.StartAt(015);

@@ -48,6 +48,7 @@
     <Compile Include="CardiacMemoryCellTests.cs" />
     <Compile Include="CardiacManual_ExamplePrograms_IntegrationTests.cs" />
     <Compile Include="CardiacTACTests.cs" />
+    <Compile Include="CardiacSFTTests.cs" />
     <Compile Include="CardiacTests.cs" />
     <Compile Include="LittleMansComputerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

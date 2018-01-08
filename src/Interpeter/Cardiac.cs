@@ -9,8 +9,8 @@ namespace Interpeter
 
     private readonly Queue<int> input = new Queue<int>();
     private readonly CardiacMemoryCell[] memory;
+    private readonly Accumilator accumilator = new Accumilator();
     private int programCounter = 0;
-    private int accumilator = 0;
 
     public Cardiac()
     {
@@ -41,26 +41,32 @@ namespace Interpeter
             memory[cell.Address].Value = input.Dequeue();
             break;
           case CardiacOpcode.CLA:
-            accumilator = memory[cell.Address].Value;
+            accumilator.Set(memory[cell.Address].Value);
             break;
           case CardiacOpcode.ADD:
-            accumilator += memory[cell.Address].Value;
+            accumilator.Add(memory[cell.Address].Value);
             break;
           case CardiacOpcode.TAC:
-            if (accumilator < 0)
+            if (accumilator.Value < 0)
             {
               nextCounter = cell.Address;
             }
             break;
-          // SFT
+          case CardiacOpcode.SFT:
+            var timeShiftLeft = cell.Address / 10;
+            var timeShiftRight = cell.Address % 10;
+
+            accumilator.ShiftLeft(timeShiftLeft);
+            accumilator.ShiftRight(timeShiftRight);
+            break;
           case CardiacOpcode.OUT:
             Output.Enqueue(memory[cell.Address].Value);
             break;
           case CardiacOpcode.STO:
-            memory[cell.Address].Value = accumilator;
+            memory[cell.Address].Value = accumilator.Value;
             break;
           case CardiacOpcode.SUB:
-            accumilator -= memory[cell.Address].Value;
+            accumilator.Subtract(memory[cell.Address].Value);
             break;
           case CardiacOpcode.JMP:
             nextCounter = cell.Address;
@@ -73,6 +79,42 @@ namespace Interpeter
         programCounter = nextCounter;
         if (programCounter >= memory.Length)
           throw new NotImplementedException();
+      }
+    }
+
+    private class Accumilator
+    {
+      private int _value;
+
+      public int Value
+      {
+        get { return _value; }
+        set { _value = value % 10000; }
+      }
+
+      public void Set(int val)
+      {
+        Value = val;
+      }
+
+      public void Add(int val)
+      {
+        Value += val;
+      }
+
+      public void Subtract(int val)
+      {
+        Value -= val;
+      }
+
+      public void ShiftLeft(int spaces)
+      {
+        Value *= (int)Math.Pow(10, spaces);
+      }
+
+      public void ShiftRight(int spaces)
+      {
+        Value /= (int)Math.Pow(10, spaces);
       }
     }
   }
