@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Interpreter
+namespace Interpreter.Cardiac
 {
   public class CardiacRAMCell : CardiacMemoryCell
   {

@@ -1,4 +1,4 @@
-﻿namespace Interpreter
+﻿namespace Interpreter.Cardiac
 {
   public class CardiacLoader
   {

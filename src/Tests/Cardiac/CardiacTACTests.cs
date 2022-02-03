@@ -1,12 +1,12 @@
-﻿using Interpreter;
+﻿using Interpreter.Cardiac;
 using NUnit.Framework;
 
-namespace Tests
+namespace Tests.Cardiac
 {
   [TestFixture]
   public class CardiacTACTests
   {
-    private Cardiac computer;
+    private Interpreter.Cardiac.Cardiac computer;
     private CardiacLoader loader;
 
     private const int ResultWhen_Negative = 999;
@@ -15,7 +15,7 @@ namespace Tests
     [SetUp]
     public void SetUp()
     {
-      computer = new Cardiac();
+      computer = new Interpreter.Cardiac.Cardiac();
       loader = new CardiacLoader(computer);
     }
 

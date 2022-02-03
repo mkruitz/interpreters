@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Interpreter
+namespace Interpreter.LittleMansComputer
 {
   public class LittleMansComputer
   {

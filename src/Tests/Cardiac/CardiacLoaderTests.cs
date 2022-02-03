@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Interpreter;
+using Interpreter.Cardiac;
 using NUnit.Framework;
 
-namespace Tests
+namespace Tests.Cardiac
 {
   [TestFixture]
   public class CardiacLoaderTests

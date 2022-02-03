@@ -1,18 +1,18 @@
-﻿using Interpreter;
+﻿using Interpreter.Cardiac;
 using NUnit.Framework;
 
-namespace Tests
+namespace Tests.Cardiac
 {
   [TestFixture]
   public class CardiacManual_ExamplePrograms_IntegrationTests
   {
-    private Cardiac computer;
+    private Interpreter.Cardiac.Cardiac computer;
     private CardiacLoader loader;
 
     [SetUp]
     public void SetUp()
     {
-      computer = new Cardiac();
+      computer = new Interpreter.Cardiac.Cardiac();
       loader = new CardiacLoader(computer);
     }
 

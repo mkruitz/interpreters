@@ -1,7 +1,6 @@
-﻿using Interpreter;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace Tests
+namespace Tests.LittleMansComputer
 {
   [TestFixture]
   public class LittleMansComputerTests
@@ -9,7 +8,7 @@ namespace Tests
     [Test]
     public void FirstProgram()
     {
-      var lmc = new LittleMansComputer(new[]
+      var lmc = new Interpreter.LittleMansComputer.LittleMansComputer(new[]
       {
                 "901", "308", "901", "309", "508", "209", "902", "000"
             });
