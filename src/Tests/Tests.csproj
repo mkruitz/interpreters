@@ -8,7 +8,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Interpeter\Interpreter.csproj" />
+    <ProjectReference Include="..\Interpreter\Interpreter.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.13.2" />
