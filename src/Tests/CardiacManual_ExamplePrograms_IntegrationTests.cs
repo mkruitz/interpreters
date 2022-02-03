@@ -1,4 +1,4 @@
-﻿using Interpeter;
+﻿using Interpreter;
 using NUnit.Framework;
 
 namespace Tests

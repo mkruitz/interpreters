@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Configuration;
-using Interpeter;
+using Interpreter;
 using NUnit.Framework;
 
 namespace Tests

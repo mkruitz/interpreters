@@ -1,4 +1,4 @@
-﻿namespace Interpeter
+﻿namespace Interpreter
 {
   public interface IDeviceWithInput
   {

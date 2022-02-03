@@ -1,4 +1,4 @@
-﻿namespace Interpeter
+﻿namespace Interpreter
 {
   public enum CardiacOpcode
   {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Interpeter;
+using Interpreter;
 using NUnit.Framework;
 
 namespace Tests

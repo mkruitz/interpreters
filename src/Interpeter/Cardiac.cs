@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Interpeter
+namespace Interpreter
 {
   public class Cardiac : IDeviceWithInput
   {
