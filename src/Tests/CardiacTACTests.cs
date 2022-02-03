@@ -1,5 +1,4 @@
-﻿using System;
-using Interpreter;
+﻿using Interpreter;
 using NUnit.Framework;
 
 namespace Tests
