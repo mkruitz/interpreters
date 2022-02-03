@@ -11,6 +11,6 @@
     <ProjectReference Include="..\Interpeter\Interpeter.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.6.0" />
+    <PackageReference Include="NUnit" Version="3.13.2" />
   </ItemGroup>
 </Project>
